@@ -1,3 +1,18 @@
+import { defineConfig } from '@rtvi/core';
+
+export default defineConfig({
+  // ... existing configuration ...
+
+  tts: {
+    provider: 'elevenlabs',
+    apiKey: process.env.ELEVENLABS_API_KEY,
+    // You can specify a default voice ID if desired
+    // voiceId: 'your-default-voice-id',
+  },
+
+  // ... rest of the configuration ...
+});
+
 export const BOT_READY_TIMEOUT = 15 * 1000; // 15 seconds
 
 export const defaultBotProfile = "voice_2024_08";
@@ -32,6 +47,13 @@ export const LANGUAGES = [
     stt_model: "nova-2-general",
     default_voice: "b9de4a89-2257-424b-94c2-db18ba68c81a",
   },
+  {
+    label: "Dutch",
+    value: "nl",
+    tts_model: "eleven_multilingual_v2",
+    stt_model: "nova-2-general",
+    default_voice: "vEJ3qtg3sMsfnn5mIDnG",
+  },
 
   /* Not yet supported by Cartesia {
     label: "Portuguese",
@@ -58,7 +80,7 @@ export const LANGUAGES = [
 
 export const defaultServices = {
   llm: "together",
-  tts: "cartesia",
+  tts: "elevenlabs",  // Changed from "cartesia" to "elevenlabs"
   stt: "deepgram",
 };
 
@@ -204,4 +226,10 @@ export const PRESET_CHARACTERS = [
     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
     voice: "820a3788-2b37-4d21-847a-b65d8a68c99a",
   },
+  {
+    name: "Dutch Assistant",
+    prompt: `You are a helpful assistant who speaks Dutch. Please assist users in Dutch. Keep responses brief and legible.
+    Your responses will be converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    voice: "vEJ3qtg3sMsfnn5mIDnG",  // Dutch voice from ElevenLabs
+  }
 ];

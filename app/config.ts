@@ -35,6 +35,7 @@ export const ttsVoices: Voice[] = [
   { label: "California Girl", id: "b7d50908-b17c-442d-ad8d-810c63997ed9" },
   { label: "Friendly Reading Man", id: "69267136-1bdc-412f-ad78-0caad210fb40" },
   { label: "Kentucky Man", id: "726d5ae5-055f-4c3d-8355-d9677de68937" },
+  { label: "Dutch", id: "vEJ3qtg3sMsfnn5mIDnG" },
 ];
 
 export const languages: Language[] = [
@@ -49,6 +50,13 @@ export const languages: Language[] = [
     model_id: "sonic-multilingual",
     code: "fr",
     voice: "a8a1eb38-5f15-4c1d-8722-7ac0f329727d",
+  },
+  // Add Dutch language
+  {
+    language: "Dutch",
+    model_id: "eleven_multilingual_v2",
+    code: "nl",
+    voice: "vEJ3qtg3sMsfnn5mIDnG",
   },
 ];
 
@@ -71,5 +79,23 @@ export const defaultConfig = {
   },
   tts: {
     voice: ttsVoices[0].id,
+    service: "tts",
+    options: [
+      {
+        name: "voice",
+        value: "vEJ3qtg3sMsfnn5mIDnG"  // The Dutch voice ID from ElevenLabs
+      },
+      {
+        name: "model",
+        value: "eleven_multilingual_v2"  // Use the Eleven Multilingual v2 model for Dutch
+      },
+      {
+        name: "language",
+        value: "nl"  // Set Dutch as the language
+      }
+    ]
   },
 };
+
+export const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+export const ELEVENLABS_VOICE_ID = process.env.ELEVENLABS_VOICE_ID;
